@@ -16,5 +16,16 @@ export class UsuarioService {
     return this.http.get<any>(this.urlApi + '/get');
   }
 
+  public postUsuario(usuario:any){
+    return this.http.post(this.urlApi+'/save',usuario);
+  }
+
+  public getEmpresa(): Observable<any>{
+    return this.http.get<any>(this.urlApi + '/getEmpresa');
+  }
+
+  public getRoles(): Observable<any>{
+    return this.http.get<any>(this.urlApi + '/getRoles');
+  }
   
 }
