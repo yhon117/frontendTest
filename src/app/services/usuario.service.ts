@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UsuarioModel } from '../model/usuario-model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class  UsuarioService {
 
   private urlApi="http://localhost:8080/api/usuario";  
   constructor(private http:HttpClient) { 
@@ -16,8 +18,8 @@ export class UsuarioService {
     return this.http.get<any>(this.urlApi + '/get');
   }
 
-  public postUsuario(usuario:any){
-    return this.http.post(this.urlApi+'/save',usuario);
+  public postUsuario(usuarioModel:UsuarioModel):Observable<Object> {
+    return this.http.post<UsuarioModel>(this.urlApi+'/save',usuarioModel);
   }
 
   public getEmpresa(): Observable<any>{
