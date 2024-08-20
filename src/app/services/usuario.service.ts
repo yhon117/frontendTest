@@ -29,5 +29,9 @@ export class  UsuarioService {
   public getRoles(): Observable<any>{
     return this.http.get<any>(this.urlApi + '/getRoles');
   }
+
+  public deleteUsuario(cedula: string): Observable<Object> {
+    return this.http.delete<Object>(`${this.urlApi}/delete/${cedula}`);
+  }
   
 }

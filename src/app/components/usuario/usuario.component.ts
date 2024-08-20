@@ -27,4 +27,19 @@ export class UsuarioComponent implements OnInit{
     );
 
   }
+
+  confirmDelete(item: any) {
+    const confirmed = window.confirm(`¿Estás seguro de que deseas eliminar al usuario con cédula ${item.cedula}?`);
+    if (confirmed) {
+           this.eliminar(item);
+      console.log('Usuario eliminado:', item);
+    }
+  }
+
+  eliminar(cedula:string){
+    this.apiService.deleteUsuario(cedula).subscribe({
+      next:(lam)=>this.getAllUsuarios(),
+      error:(err:any)=>console.log(err) 
+    })
+  }
 }
