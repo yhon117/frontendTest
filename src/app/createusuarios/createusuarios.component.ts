@@ -14,6 +14,8 @@ export class CreateusuariosComponent implements OnInit{
   data:any[]=[]
   roles:any[]=[]
   usuario: UsuarioModel= new UsuarioModel();
+  rol:UsuarioModel[]=[];
+  empresa2:UsuarioModel[]=[];
   // private fb = inject(FormBuilder)
 // formUsuario: FormGroup = new FormGroup({});
   private router= inject(Router)
@@ -23,22 +25,23 @@ export class CreateusuariosComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getAllEmpresa();
     this.getAllRoles();
-  }
+    this.getAllEmpresa();
 
-  getAllEmpresa(){
-    this.apiService.getEmpresa().subscribe(
-      response=>{
-        this.data=response;
-      }
-    )
   }
 
   getAllRoles(){
     this.apiService.getRoles().subscribe(
       response=>{
         this.roles=response;
+      }
+    )
+  }
+
+  getAllEmpresa(){
+    this.apiService.getEmpresa().subscribe(
+      response=>{
+        this.data=response;
       }
     )
   }
@@ -52,6 +55,7 @@ export class CreateusuariosComponent implements OnInit{
     this.apiService.postUsuario(this.usuario).subscribe({
       next:(lamd)=>{
         this.listaUsuario();
+        //console.log(this.usuario);
       },
       error:(error:any)=>{console.log(error)}
     })
@@ -61,7 +65,19 @@ export class CreateusuariosComponent implements OnInit{
     this.navegador.navigate(['']);
   }
 
-  /*usuarioModel:UsuarioModel=new UsuarioModel;
+   /*getAllEmpresa(){
+    this.apiService.getEmpresa().subscribe(
+      response=>{
+        this.data=response;
+      }
+    )
+  }
+
+
+
+  
+
+ usuarioModel:UsuarioModel=new UsuarioModel;
   guardar(){
     this.apiService.postUsuario(this.usuarioModel)
     .subscribe(data=>{

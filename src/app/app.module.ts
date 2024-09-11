@@ -5,15 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-import { CreateusuariosComponent } from './createusuarios/createusuarios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditarusuariosComponent } from './editarusuarios/editarusuarios.component';
+import { CreateusuariosComponent } from './createusuarios/createusuarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     UsuarioComponent,
-    CreateusuariosComponent
+    CreateusuariosComponent,
+    EditarusuariosComponent
   ],
   imports: [
     BrowserModule,

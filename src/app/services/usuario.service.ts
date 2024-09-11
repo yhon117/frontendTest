@@ -13,14 +13,26 @@ export class  UsuarioService {
   constructor(private http:HttpClient) { 
     
   }
-
-  public getUsuarios(): Observable<any>{
-    return this.http.get<any>(this.urlApi + '/get');
+  public getAll(): Observable<UsuarioModel[]>{
+    return this.http.get<UsuarioModel[]>(this.urlApi + '/get');
   }
 
-  public postUsuario(usuarioModel:UsuarioModel):Observable<Object> {
-    return this.http.post<UsuarioModel>(this.urlApi+'/save',usuarioModel);
+  public postUsuario(usuario:UsuarioModel):Observable<UsuarioModel> {
+    return this.http.post<UsuarioModel>(this.urlApi+'/save',usuario);
   }
+
+  public obtenerUsuario(cedula: string): Observable<UsuarioModel> {
+    return this.http.get<UsuarioModel>(`${this.urlApi}/getUsuario/${cedula}`);
+  }
+
+  public update(usuario:UsuarioModel):Observable<UsuarioModel>{
+    return this.http.put<UsuarioModel>(this.urlApi+'/update',usuario);
+  }
+
+  public delete(cedula: string): Observable<UsuarioModel> {
+    return this.http.delete<UsuarioModel>(`${this.urlApi}/delete/${cedula}`);
+  }
+  
 
   public getEmpresa(): Observable<any>{
     return this.http.get<any>(this.urlApi + '/getEmpresa');
@@ -30,8 +42,5 @@ export class  UsuarioService {
     return this.http.get<any>(this.urlApi + '/getRoles');
   }
 
-  public deleteUsuario(cedula: string): Observable<Object> {
-    return this.http.delete<Object>(`${this.urlApi}/delete/${cedula}`);
-  }
-  
+
 }

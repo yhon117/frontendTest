@@ -7,6 +7,7 @@ export class UsuarioModel{
       clave:string='';
       email:string='';
       empresa:string='';
+      nit:string='';
       roles:number=0;
       rol:string='';
       estado:number=0;
